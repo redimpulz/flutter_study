@@ -22,7 +22,7 @@ class _HelloCounter extends State<HelloCounter> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(ctx) {
     return Scaffold(
       body: Center(
         child: Column(

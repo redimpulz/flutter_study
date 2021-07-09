@@ -20,7 +20,7 @@ class _HelloFetchImages1 extends State<HelloFetchImages1> {
     _fetchData();
   }
 
-  void _fetchData() async {
+  Future<void> _fetchData() async {
     final url = 'https://dog.ceo/api/breeds/image/random/${widget.imageNums}';
     final uri = Uri.parse(url);
     setState(() {
@@ -41,7 +41,7 @@ class _HelloFetchImages1 extends State<HelloFetchImages1> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(ctx) {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -75,25 +75,24 @@ class HelloFetchImages2 extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(ctx) {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Flexible(
-              child: FutureBuilder(
+              child: FutureBuilder<List<String>>(
                   future: _fetchData(),
-                  builder: (ctx, AsyncSnapshot<List<String>> dataSnapshot) {
-                    if (dataSnapshot.connectionState ==
-                        ConnectionState.waiting) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return ListView(
-                        children: dataSnapshot.data
-                            .map((x) => Image.network(x))
-                            .toList());
+                  builder: (ctx, dataSnapshot) {
+                    return dataSnapshot.connectionState ==
+                            ConnectionState.waiting
+                        ? Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : ListView(
+                            children: dataSnapshot.data
+                                .map((x) => Image.network(x))
+                                .toList());
                   }))
         ],
       ),

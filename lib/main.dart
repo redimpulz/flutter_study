@@ -9,7 +9,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(ctx) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -25,14 +25,14 @@ class HelloMessage extends StatelessWidget {
   final String name;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(ctx) {
     return Container(child: Text(name));
   }
 }
 
 class TopPage extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(ctx) {
     return Scaffold(
       appBar: AppBar(
         title: Text('sample_app'),
